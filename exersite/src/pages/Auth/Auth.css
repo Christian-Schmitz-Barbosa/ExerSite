@@ -1,0 +1,44 @@
+.auth {
+    margin-top: 40px;
+    background-color: white;
+    color: black;
+    padding: 0px 30px 30px 30px;
+    border-radius: 20px;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+}
+
+.auth h1 {
+    text-align: center;
+    border-bottom: 2px solid black;
+}
+
+.input_container {
+    margin-top: 4vh;
+    display: grid;
+}
+
+.input_container label {
+    font-size: 0.6cm;
+}
+
+.input_container input {
+    margin-top: 5px;
+    height: 25px;
+    border-radius: 5px;
+}
+.btn{
+    margin-top: 15px;
+    margin-left: 18%;
+    background-color: #1a8918;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 10px;
+    width: 120px;
+    font-weight: bold;
+    border:none;
+    padding: 10px 15px;
+    font-size: 1em;
+}
