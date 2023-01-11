@@ -1,3 +1,7 @@
+.about, .about *{
+    background-color: gray;
+    color: white;
+}
 .about h1{
     text-align: center;
     font-size: 5vh ;
@@ -6,8 +10,7 @@
     margin-top: 30px;
     width: 70vh;
     text-align: justify;
-    background-color: white;
-    color: black;
+
     padding: 20px 20px 30px 20px;
     border-radius: 5px;   
 }

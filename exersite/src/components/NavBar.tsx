@@ -6,11 +6,19 @@ import Logo from "../imgs/Logo.png"
 
 // hooks
 import { useAuthentication } from "../hooks/useAuthentication"
-interface Props  {
+
+//context
+import { useAuthValue } from "../context/AuthContext"
+
+interface Props {
     programs?: string[]
 }
-const NavBar = ({}:Props) => {
-    const {logOut} = useAuthentication()
+const NavBar = ({ }: Props) => {
+    const { logOut } = useAuthentication()
+
+    const userContext = useAuthValue()
+    console.log(userContext);
+
 
     return (
         <div id="navbar">
@@ -26,25 +34,37 @@ const NavBar = ({}:Props) => {
             </div>
             <nav className="menu">
                 <ul className="nav-menu">
-                    <li >
-                        <NavLink to="/">Home</NavLink>
+                    {userContext.uid && <>
+                        <li className="corner-left" >
+                            <NavLink to="/">Home</NavLink>
 
-                    </li>
-                    <li className="menu-dropdown"> <a href="#"> Materias
-                        <ul>
+                        </li>
+                        <li className="menu-dropdown"> <a href="#"> Materias
+                            <ul>
 
-                        </ul>
-                    </a>
+                            </ul>
+                        </a>
 
-                    </li>
-                    <li className="menu-dropdown"> <a href="#">Conta
-                        <ul>
-                            <li><a href="#">Atualizar Conta</a></li>
-                            <li><a href="#">Configuração</a></li>
-                            <li><Link to="/login" onClick={logOut}>Sair</Link></li>
-                        </ul>
-                    </a></li>
-                    <li>
+                        </li>
+                        <li className="menu-dropdown"> <a href="#">Conta
+                            <ul>
+                                <li><a href="#">Atualizar Conta</a></li>
+                                <li><a href="#">Configuração</a></li>
+                                <li><Link to="/login" onClick={logOut}>Sair</Link></li>
+                            </ul>
+                        </a></li>
+
+                    </>}
+
+                    {!userContext.uid && <>
+                        <li className="corner-left">
+                            <NavLink to="/login">Login</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to="/register">Register</NavLink>
+                        </li>
+                    </>}
+                    <li className="corner-right">
                         <NavLink to="/about">Sobre</NavLink>
                     </li>
                 </ul>

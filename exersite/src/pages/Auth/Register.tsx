@@ -27,7 +27,7 @@ const Register = () => {
 
   return (
     <div className='register auth'>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}className="form-container">
         <h1>Cadastre-se</h1>
         <div className="input_container">
           <label htmlFor='name'>Nome:</label>

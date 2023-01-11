@@ -1,7 +1,9 @@
+.auth, .auth *,.form-container, .input_container, .input_container *,.link , .link *{
+    background-color: gray;
+    color: white;
+}
 .auth {
     margin-top: 40px;
-    background-color: white;
-    color: black;
     padding: 0px 30px 30px 30px;
     border-radius: 20px;
     width: 400px;
@@ -12,10 +14,10 @@
 
 .auth h1 {
     text-align: center;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid white;
 }
 form{
-
+    background-color: gray;
     position: relative;
 }
 
@@ -29,6 +31,8 @@ form{
 }
 
 .input_container input {
+    background-color: white;
+    border: none;
     margin-top: 5px;
     height: 25px;
     border-radius: 5px;
@@ -65,7 +69,7 @@ form{
 .link a{
     text-decoration: none;
     width: 100px;
-    color: black;
+    color: white;
 }
 .link a:hover{
     color:blue;
