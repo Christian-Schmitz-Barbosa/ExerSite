@@ -4,26 +4,25 @@ import {
 } from "react"
 import "./Auth.css"
 
+import { useAuthentication } from "../../hooks/useAuthentication"
+import { NavLink } from "react-router-dom"
+
 const Register = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
+  const { createUser, error: authError, loading } = useAuthentication()
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (password === confirmPassword) {
-
-      // const user = {
-      //   name,
-      //   email,
-      //   password,
-      //   historicoTest: [],
-      //   trofeus:[],
-      // }
-    }else{
-
+    const user = {
+      email,
+      password,
+      displayName: name,
     }
+    createUser(user)
   }
 
   return (
@@ -70,9 +69,12 @@ const Register = () => {
             value={confirmPassword || ""}
           />
         </div>
-        <input type="submit" className="btn" value="Enviar"/>
+        <input type="submit" className="btn" value="Enviar" />
       </form>
-
+      <div className="link">
+        <h2>Já é cadastrado?</h2>
+        <NavLink to="/login">Entrar</NavLink>
+      </div>
     </div>
   )
 }

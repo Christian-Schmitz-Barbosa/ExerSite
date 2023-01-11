@@ -5,13 +5,18 @@
     padding: 0px 30px 30px 30px;
     border-radius: 20px;
     width: 400px;
-    display: flex;
+    display: grid;
     justify-content: center;
+    align-items: center;
 }
 
 .auth h1 {
     text-align: center;
     border-bottom: 2px solid black;
+}
+form{
+
+    position: relative;
 }
 
 .input_container {
@@ -29,16 +34,40 @@
     border-radius: 5px;
 }
 .btn{
-    margin-top: 15px;
-    margin-left: 18%;
+
+    position: absolute;
+    width: 120px;
+
+    top: 102%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+ 
     background-color: #1a8918;
     color: white;
     text-align: center;
     cursor: pointer;
     border-radius: 10px;
-    width: 120px;
     font-weight: bold;
     border:none;
     padding: 10px 15px;
     font-size: 1em;
+}
+.link{
+    margin-top: 40px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.link h2{
+    width: 100%;
+}
+.link a{
+    text-decoration: none;
+    width: 100px;
+    color: black;
+}
+.link a:hover{
+    color:blue;
+    text-decoration: underline;
 }

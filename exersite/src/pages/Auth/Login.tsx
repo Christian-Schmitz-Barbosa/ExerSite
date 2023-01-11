@@ -1,7 +1,6 @@
-import {
-  useState,
-  FormEvent
-} from "react"
+import { useState, FormEvent } from "react"
+import {  NavLink } from "react-router-dom"
+import { useAuthentication } from "../../hooks/useAuthentication"
 import "./Auth.css"
 
 type Props = {}
@@ -10,20 +9,17 @@ const Login = (props: Props) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState('')
 
+  const { login, loading, error } = useAuthentication()
+
+
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (password) {
 
-      // const user = {
-      //   name,
-      //   email,
-      //   password,
-      //   historicoTest: [],
-      //   trofeus:[],
-      // }
-    } else {
-
-    }
+      const data = {
+        email,
+        password,
+      }
+      login(data)
   }
 
   return (
@@ -53,7 +49,10 @@ const Login = (props: Props) => {
 
         <input type="submit" className="btn" value="Enviar" />
       </form>
-
+      <div className="link">
+        <h2>Ainda não é cadastrado?</h2>
+        <NavLink to = "/register">Criar conta</NavLink>
+      </div>
     </div>
   )
 }

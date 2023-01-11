@@ -15,7 +15,7 @@ const About = () => {
         não só em escrever códigos, como também em aprimorar o meu domínio de todo o processo de engenharia de
         software. O segundo motivo é que eu acredito que nem todas as cadeiras são adequadas, pois elas não
         abordam uma metodologia de ensino construtiva, tal metodologia implica em fazer os alunos pensarem de
-        forma ativa, o chamado estudo ativo, e esse site justamente vem para preencher esta lacuna do curso.
+        forma ativa, o chamado estudo ativo, e esse site justamente vem para tentar melhorar esta lacuna do curso.
       </p>
     </div>
   )
