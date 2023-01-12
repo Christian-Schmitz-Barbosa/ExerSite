@@ -15,9 +15,8 @@ interface Props {
 }
 const NavBar = ({ }: Props) => {
     const { logOut } = useAuthentication()
-
+    
     const userContext = useAuthValue()
-    console.log(userContext);
 
 
     return (
@@ -37,6 +36,7 @@ const NavBar = ({ }: Props) => {
                     {userContext.uid && <>
                         <li className="corner-left" >
                             <NavLink to="/">Home</NavLink>
+                            <NavLink to ="/createtask">Create Task</NavLink>
 
                         </li>
                         <li className="menu-dropdown"> <a href="#"> Materias
@@ -50,7 +50,7 @@ const NavBar = ({ }: Props) => {
                             <ul>
                                 <li><a href="#">Atualizar Conta</a></li>
                                 <li><a href="#">Configuração</a></li>
-                                <li><Link to="/login" onClick={logOut}>Sair</Link></li>
+                                <li><Link to="/login" onClick={()=> {logOut()}}>Sair</Link></li>
                             </ul>
                         </a></li>
 
