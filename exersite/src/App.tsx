@@ -23,6 +23,7 @@ import About from './pages/About/About';
 import Login from "./pages/Auth/Login";
 import Register from './pages/Auth/Register';
 import CreateTask from './pages/CreateTask/CreateTask';
+import Task from './pages/Task/Task';
 
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
             <Routes>
               <Route path='/' element={!_.isEmpty(user)? <Home /> : <Navigate to="/login" />} />
               <Route path="/createtask" element={!_.isEmpty(user)? <CreateTask /> : <Navigate to="/login" />} />
+              <Route path="/posts/:id" element={!_.isEmpty(user)? <Task /> : <Navigate to="/login" />} />
               <Route path="/login" element={_.isEmpty(user) ? <Login /> : <Navigate to="/" />} />
               <Route path='/register' element={_.isEmpty(user) ? <Register /> : <Navigate to="/" />} />
               <Route path="/about" element={<About />} />

@@ -1,3 +1,61 @@
-.check-box{
-    background-color: white;
+.task {
+    width: 34vh;
+    padding: 0 4em 1em 4em;
+    border-radius: 10px;
+    margin-top: 2em;
+}
+
+.task h2 {
+    border-bottom: 2px solid white;
+}
+.task h3{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2em;
+}
+.task form {
+    border-bottom: 2px solid white;
+    margin-bottom: 2em;
+}
+
+.input-container {
+    display: grid;
+    justify-content: left;
+    margin-bottom: 30px;
+}
+
+.input-container textarea {
+    width: 300px;
+    height: 100px;
+    border-radius: 10px;
+    padding: .5em;
+    color: black;
+}
+.input-container textarea:focus{
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+}
+.input-container label {
+    display: flex;
+    justify-content: left;
+}
+
+.input-container input {
+    color: black;
+    width: 300px;
+    height: 25px;
+    border-radius: 5px;
+    transition: .5;
+    border: 1px solid white
+}
+
+.input-container input[type=text]:focus {
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+}
+
+.input-container input[type=submit] {
+    background-color: green;
 }

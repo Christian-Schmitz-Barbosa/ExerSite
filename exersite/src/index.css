@@ -1,6 +1,37 @@
-* {
+body{
+    font-family:'Times New Roman', Times, serif;
     background-color: black;
     color: white;
   }
+body textarea::placeholder, form, input, button{
+  font-family:  Helvetica;
+}
+body button {
+  background-color: grey;
+}
+body input[type=submit]{
+  background-color: green;
+  width: 35%;
+  height: 30px;
+  border:1px solid green;
+
+}
+body input[type=submit]:hover{
+  background-color:gray;
+  border:1px solid black;
+}
+
+
+input[type=checkbox] {
+  
+}
+.button-container{
+  margin-top: 30px;
+  display:flex;
+}
+.button-container label{
+  margin-right: 20px;
+}
+
   
   

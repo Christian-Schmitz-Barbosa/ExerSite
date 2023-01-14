@@ -48,7 +48,7 @@ const NavBar = ({ }: Props) => {
                         </li>
                         <li className="menu-dropdown"> <a href="#">Conta
                             <ul>
-                                <li><a href="#">Atualizar Conta</a></li>
+                                <li><a href="#">Usuário</a></li>
                                 <li><a href="#">Configuração</a></li>
                                 <li><Link to="/login" onClick={()=> {logOut()}}>Sair</Link></li>
                             </ul>

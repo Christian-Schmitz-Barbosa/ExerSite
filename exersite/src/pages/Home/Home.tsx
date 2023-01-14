@@ -1,21 +1,32 @@
 import React from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useFetchDocuments } from '../../hooks/useFetchDocuments'
 
-type Props = {}
 
-const Home = (props: Props) => {
+const Home = () => {
   const { documents: posts, loading } = useFetchDocuments("posts")
+  const navigate = useNavigate()
+  console.log(posts);
+  
+
+  const handleVisualization = (post:any) => {
+    
+    const postVisualization = {
+      id: post.id,
+      taskInformations: post.taskInformations,
+      questionsList: post.questionsList,
+      url: post.url,
+    } 
+    sessionStorage.setItem("task", JSON.stringify(postVisualization))
+
+    navigate(`/posts/${post.id}`)
+  }
+  
   const renderPosts = () => {
-    return posts.map(post => (
-      <div key={post.id}>
-        <h2>{post.title}</h2>
-        <p>{post.content}</p>
-        {post.alternativesArr.map((alternative: any) => {
-          return <p key={alternative.index}>
-            {alternative.alternative}
-          </p>
-        })}
-        <p>{post.course}</p>
+    return posts.map((post, index:number) => (
+      <div key={index}>
+        {post.taskInformations.taskTitle}
+        <button onClick={() => handleVisualization(post)}> Visualizar Teste </button>
       </div>
     ))
   }

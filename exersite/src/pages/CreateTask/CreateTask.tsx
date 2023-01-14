@@ -1,55 +1,116 @@
 import { useState, FormEvent } from "react"
 import { useNavigate } from "react-router-dom"
+import _ from "underscore"
+import { useTestsSubmit } from "../../hooks/useTestsSubmit"
 import { useInsertDocument } from "../../hooks/useInsertDocument"
+
+import "./CreateTask.css"
 
 
 //Interfaces
-import { IData } from "../../interfaces/IData"
+import { IData, IQuestionsList, ITaskInformations, ITask } from "../../interfaces/IData"
 
 const CreateTask = () => {
-  const [title, setTitle] = useState('')
+  //Task
+  const [taskTitle, setTaskTitle] = useState<string>("")
+  const [description, setDescription] = useState<string>("")
+  const [course, setCourse] = useState('')
+  const [taskInformations, setTaskInformations] = useState<ITaskInformations>()
+
+
+
+  //Questions
+  const [questionTitle, setQuestionTitle] = useState('')
   const [content, setContent] = useState('')
   const [alternatives, setAlternatives] = useState("")
   const [alternativesArr, setAlternativesArr] = useState<IData[]>([])
   const [answer, setAnswer] = useState(false)
-  const [course, setCourse] = useState('')
-  
+  const [questionsList, setQuestionsList] = useState<IQuestionsList[]>([])
+
+  //Converge taskInformations and questionsList
+  const [task, setTask] = useState<ITask>()
 
   const navigate = useNavigate()
 
+
+
   //create post function
   const { insertDocument, response } = useInsertDocument('posts')
-  const handleCreateTask = (e: FormEvent<HTMLFormElement>) => {
 
+  const handleCreateTask = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    insertDocument(
-      {
-        title,
-        content,
-        alternativesArr,
-        course
-      }
-    )
-    navigate("/")
+    if (taskInformations && questionsList) {
+      setTask({ taskInformations: taskInformations, questionsList })
+      await insertDocument(task)
+      navigate("/")
+    } else {
+      console.log("deu Errado");
+
+    }
+
+
   }
 
+  // This function insert a question in the array of questions
+  const handleInsertQuestion = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const data = {
+      questionTitle,
+      content,
+      alternativesArr,
+    }
+
+    if (data.questionTitle && data.content && !(_.isEmpty(data.alternativesArr))) {
+      setQuestionsList((prevQuestionsList): IQuestionsList[] => {
+        if (_.isEmpty(prevQuestionsList)) {
+          return [data]
+        } else {
+          return [...prevQuestionsList, data]
+        }
+      })
+    } else {
+      console.log("Errou algo");
+
+    }
+    setAlternativesArr([])
+    setQuestionTitle("")
+    setContent('')
+    setAnswer(false)
+  }
+
+  // this function update a task infomations when some useStates of the informations are changed 
+  const handleTaskInformation = () => {
+
+    const data = {
+      taskTitle,
+      description,
+      course
+    }
+    if (data) {
+      setTaskInformations(data)
+    }
+  }
+
+  //This function add alternatives in the array of alternatives
   const handleAlternatives = () => {
     const data: IData = {
       alternative: alternatives,
       isCorrect: answer,
-      id: Math.random() * (10 - 1) + 1
     }
-    if (data) {
+
+    if (alternativesArr.length === 0) {
+      setAlternativesArr([data])
+    } else {
       setAlternativesArr([...alternativesArr, data])
-      setAlternatives("")
-
-      const check: any = document.getElementById("check-box")
-      if (check.checked) {
-        check.checked = false;
-        setAnswer(false)
-      }
-
     }
+    setAlternatives("")
+
+    const check: any = document.getElementById("check-box")
+    if (check.checked) {
+      check.checked = false;
+      setAnswer(false)
+    }
+
   }
 
   const handleAnswer = (e: any) => {
@@ -60,17 +121,62 @@ const CreateTask = () => {
     }
   }
   return (
-    <div id="teste">
-      <h2>Create a task</h2>
-      <form className="create-task-container" onSubmit={handleCreateTask}>
+    <form onSubmit={handleCreateTask} className="task">
+      <h2>Crie uma task</h2>
+      <form className="create-task-container" >
         <div className="input-container">
-          <label htmlFor="title">Título</label>
+          <label htmlFor="titulo">Título da Task</label>
           <input
             type="text"
-            name="title"
+            name="taskTitle"
+            placeholder="Insira um Título"
+            onChange={e => {
+              setTaskTitle(e.target.value)
+              handleTaskInformation()
+            }}
+            value={taskTitle || ""}
+            required
+          />
+        </div>
+        <div className="input-container">
+          <label htmlFor="description">Task</label>
+          <textarea
+            name="description"
+            placeholder="Insira a descrição da task"
+            onChange={(e) => {
+              setDescription(e.target.value)
+              handleTaskInformation()
+            }}
+            value={description || ''}
+            required
+          ></textarea>
+        </div>
+        <div className="input-container">
+          <label htmlFor="course">Qual é a Matéria?</label>
+          <input
+            type="text"
+            placeholder="Escreva o nome"
+            onChange={(e) => {
+              setCourse(e.target.value)
+              handleTaskInformation()
+
+            }}
+            value={course || ''}
+            required
+          />
+        </div>
+      </form>
+
+      <h3>Adicione as Questões</h3>
+      <form className="create-question-container" onSubmit={handleInsertQuestion}>
+        <div className="input-container">
+          <label htmlFor="title">Título da Questão</label>
+          <input
+            type="text"
+            name="questionTitle"
             placeholder="Insira uma título"
-            onChange={(e) => setTitle(e.target.value)}
-            value={title || ''}
+            onChange={(e) => setQuestionTitle(e.target.value)}
+            value={questionTitle || ''}
           />
         </div>
         <div className="input-container">
@@ -83,7 +189,7 @@ const CreateTask = () => {
           ></textarea>
         </div>
 
-        <div className="input-container">
+        <div className="input-container ">
           <label >Alternativas</label>
           <input
             type="text"
@@ -94,30 +200,25 @@ const CreateTask = () => {
             }}
             value={alternatives || ''}
           />
-          <div>
-            <p>Está correta a resposta?</p>
+          <div className="checkbox-container">
             <input
               type="checkbox"
-              id="check-box"
+              className="check-box"
               onChange={(e) => handleAnswer(e)}
             />
-            <button type="button" onClick={handleAlternatives}>Do something</button>
+            <label>Está correta a Resposta?   </label>
+
+            <div className="button-container">
+              <label htmlFor="">Adicionar Alternativa</label>
+              <button type="button" onClick={handleAlternatives}><span>+</span></button>
+            </div>
           </div>
         </div>
-        <div className="input-container">
-          <label htmlFor="course">Qual é a Matéria?</label>
-          <input
-            type="text"
-            placeholder="Escreva o nome da matéria"
-            onChange={(e) => {
-              setCourse(e.target.value)
-            }}
-            value={course || ''}
-          />
-        </div>
-        <input type="submit" value="Postar" />
+
+        {alternativesArr.length <= 5 ? <input type="submit" value="Adicionar Questão a Task" /> : <input type="submit" value="Máximo de Opções Alcançado" disabled />}
       </form>
-    </div>
+      <input type="submit" />
+    </form>
   )
 }
 
