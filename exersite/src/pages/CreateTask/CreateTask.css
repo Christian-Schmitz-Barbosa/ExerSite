@@ -8,17 +8,20 @@
 .task h2 {
     border-bottom: 2px solid white;
 }
-.task h3{
+
+.task h3,
+h2 {
     display: flex;
     justify-content: center;
     margin-bottom: 2em;
 }
+
 .task form {
     border-bottom: 2px solid white;
     margin-bottom: 2em;
 }
 
-.input-container {
+.input-container,.input-container-alternatives {
     display: grid;
     justify-content: left;
     margin-bottom: 30px;
@@ -31,17 +34,13 @@
     padding: .5em;
     color: black;
 }
-.input-container textarea:focus{
-    background-color: black;
-    border: 1px solid white;
-    color: white;
-}
-.input-container label {
+
+ label {
     display: flex;
     justify-content: left;
 }
 
-.input-container input {
+input {
     color: black;
     width: 300px;
     height: 25px;
@@ -50,12 +49,64 @@
     border: 1px solid white
 }
 
-.input-container input[type=text]:focus {
-    background-color: black;
-    border: 1px solid white;
-    color: white;
-}
 
 .input-container input[type=submit] {
     background-color: green;
+}
+.input-container-alternatives{
+    background-color: rgb(88, 87, 87);
+    height: 200px;
+    width: 320px;
+    padding: 2em;
+    padding-bottom: 5em;
+    border-radius: 20%;
+    margin-bottom: 2em;
+}
+.checkbox-container {
+    margin-top: 1em;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+}
+
+.button-container {
+    margin-top: 30px;
+    display: flex;
+    position: relative;
+}
+
+
+
+.button-container button {
+    margin-left: 2em;
+    width: 200px;
+    height: 40px;
+    color: black;
+    background-color: rgb(177, 176, 176);
+    border-radius: 5px;
+
+    transition: .5s;
+    cursor: pointer;
+    
+    position:absolute;
+    display: flex;
+    left: 10%;
+    justify-content: center;
+    align-items: center;
+
+    
+}
+
+.button-container button:hover{
+    padding: 2em;
+    font-size: medium;
+    color: white;
+    border-radius: 10px;
+    background-color:rgb(3, 3, 3)
+
 }

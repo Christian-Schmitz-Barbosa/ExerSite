@@ -50,7 +50,7 @@ const Login = (props: Props) => {
         <input type="submit" className="btn" value="Enviar" />
       </form>
       <div className="link">
-        <h2>Ainda não é cadastrado?</h2>
+        <h2>Não é cadastrado?</h2>
         <NavLink to = "/register">Criar conta</NavLink>
       </div>
     </div>

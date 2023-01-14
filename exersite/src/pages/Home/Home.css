@@ -1,0 +1,58 @@
+.posts-container {
+    margin-top: 2em;
+    padding: 3em;
+    border-radius: 10px;
+    background-color: gray;
+    width: 50vh;
+}
+
+.posts-container h1 {
+    height: 40px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 2px solid white;
+    margin-bottom: 2em;
+}
+
+.posts {
+    display: grid;
+    justify-content: center;
+}
+
+.posts-itens {
+    display: flex;
+    width: 400px;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 2em 2em 1em 2em;
+    border-radius: 20px;
+}
+.posts-itens h2{
+    color: black;
+}
+
+.posts-itens button {
+
+    color: black;
+    background-color: rgb(177, 176, 176);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 50px;
+    height: 50px;
+    padding: 1em;
+
+    cursor: pointer;
+
+    font-size: 3em;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.posts-itens button:hover {
+    background-color: rgb(3, 3, 3);
+    border: 1px solid black;
+    color: white;
+}

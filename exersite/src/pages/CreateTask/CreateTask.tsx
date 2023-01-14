@@ -124,6 +124,7 @@ const CreateTask = () => {
     <form onSubmit={handleCreateTask} className="task">
       <h2>Crie uma task</h2>
       <form className="create-task-container" >
+        <h3>Informações Gerais da Task</h3>
         <div className="input-container">
           <label htmlFor="titulo">Título da Task</label>
           <input
@@ -189,8 +190,8 @@ const CreateTask = () => {
           ></textarea>
         </div>
 
-        <div className="input-container ">
-          <label >Alternativas</label>
+        <div className="input-container-alternatives" >
+          <label >Insira as Alternativas</label>
           <input
             type="text"
             name="alternatives"
@@ -201,17 +202,14 @@ const CreateTask = () => {
             value={alternatives || ''}
           />
           <div className="checkbox-container">
+            <label>Está correta a Resposta?   </label>
             <input
               type="checkbox"
-              className="check-box"
               onChange={(e) => handleAnswer(e)}
             />
-            <label>Está correta a Resposta?   </label>
-
-            <div className="button-container">
-              <label htmlFor="">Adicionar Alternativa</label>
-              <button type="button" onClick={handleAlternatives}><span>+</span></button>
-            </div>
+          </div>
+          <div className="button-container">
+            <button type="button" onClick={handleAlternatives}>Adicionar Alternativa:</button>
           </div>
         </div>
 
