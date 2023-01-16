@@ -7,6 +7,7 @@ import "./Auth.css"
 import { useAuthentication } from "../../hooks/useAuthentication"
 import { NavLink } from "react-router-dom"
 
+
 const Register = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
@@ -21,7 +22,9 @@ const Register = () => {
       email,
       password,
       displayName: name,
+
     }
+    
     createUser(user)
   }
 

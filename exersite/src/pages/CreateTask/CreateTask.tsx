@@ -1,7 +1,6 @@
 import { useState, FormEvent } from "react"
 import { useNavigate } from "react-router-dom"
 import _ from "underscore"
-import { useTestsSubmit } from "../../hooks/useTestsSubmit"
 import { useInsertDocument } from "../../hooks/useInsertDocument"
 
 import "./CreateTask.css"
@@ -18,7 +17,6 @@ const CreateTask = () => {
   const [taskInformations, setTaskInformations] = useState<ITaskInformations>()
 
 
-
   //Questions
   const [questionTitle, setQuestionTitle] = useState('')
   const [content, setContent] = useState('')
@@ -28,9 +26,9 @@ const CreateTask = () => {
   const [questionsList, setQuestionsList] = useState<IQuestionsList[]>([])
 
   //Converge taskInformations and questionsList
-  const [task, setTask] = useState<ITask>()
 
   const navigate = useNavigate()
+
 
 
 
@@ -40,20 +38,17 @@ const CreateTask = () => {
   const handleCreateTask = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (taskInformations && questionsList) {
-      setTask({ taskInformations: taskInformations, questionsList })
+      const task: ITask = { taskInformations, questionsList }
       await insertDocument(task)
       navigate("/")
     } else {
       console.log("deu Errado");
-
     }
-
-
   }
 
   // This function insert a question in the array of questions
-  const handleInsertQuestion = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const handleInsertQuestion = () => {
+
     const data = {
       questionTitle,
       content,
@@ -76,6 +71,7 @@ const CreateTask = () => {
     setQuestionTitle("")
     setContent('')
     setAnswer(false)
+    return false
   }
 
   // this function update a task infomations when some useStates of the informations are changed 
@@ -105,7 +101,7 @@ const CreateTask = () => {
     }
     setAlternatives("")
 
-    const check: any = document.getElementById("check-box")
+    const check: any = document.getElementById("checkbox")
     if (check.checked) {
       check.checked = false;
       setAnswer(false)
@@ -123,7 +119,7 @@ const CreateTask = () => {
   return (
     <form onSubmit={handleCreateTask} className="task">
       <h2>Crie uma task</h2>
-      <form className="create-task-container" >
+      <div className="create-task-container" >
         <h3>Informações Gerais da Task</h3>
         <div className="input-container">
           <label htmlFor="titulo">Título da Task</label>
@@ -166,10 +162,10 @@ const CreateTask = () => {
             required
           />
         </div>
-      </form>
+      </div>
 
       <h3>Adicione as Questões</h3>
-      <form className="create-question-container" onSubmit={handleInsertQuestion}>
+      <div className="create-question-container" >
         <div className="input-container">
           <label htmlFor="title">Título da Questão</label>
           <input
@@ -205,16 +201,16 @@ const CreateTask = () => {
             <label>Está correta a Resposta?   </label>
             <input
               type="checkbox"
+              id="checkbox"
               onChange={(e) => handleAnswer(e)}
             />
           </div>
           <div className="button-container">
-            <button type="button" onClick={handleAlternatives}>Adicionar Alternativa:</button>
+            {alternativesArr.length < 5 ? <button type="button" onClick={handleAlternatives}>Adicionar Alternativa:</button> : <button type="button" disabled>Máximo de Alternativas</button>}
           </div>
         </div>
-
-        {alternativesArr.length <= 5 ? <input type="submit" value="Adicionar Questão a Task" /> : <input type="submit" value="Máximo de Opções Alcançado" disabled />}
-      </form>
+        <button className="submit-button" type="button" onClick={handleInsertQuestion}>Adicione a Questão na Task</button>
+      </div>
       <input type="submit" />
     </form>
   )
@@ -222,3 +218,4 @@ const CreateTask = () => {
 
 
 export default CreateTask
+

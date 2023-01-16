@@ -29,19 +29,19 @@ import Task from './pages/Task/Task';
 function App() {
   const [user, setUser] = useState({})
   const { userAuth } = useAuthentication()
-  
+
   useEffect(() => {
     onAuthStateChanged(userAuth, (data?) => {
       if (data) {
         return setUser(data);
-      }else{
+      } else {
         return setUser({});
 
       }
     })
   }, [userAuth])
 
-  
+
 
   return (
     <div className="App">
@@ -50,9 +50,9 @@ function App() {
           <NavBar />
           <div className="container">
             <Routes>
-              <Route path='/' element={!_.isEmpty(user)? <Home /> : <Navigate to="/login" />} />
-              <Route path="/createtask" element={!_.isEmpty(user)? <CreateTask /> : <Navigate to="/login" />} />
-              <Route path="/posts/:id" element={!_.isEmpty(user)? <Task /> : <Navigate to="/login" />} />
+              <Route path='/' element={!_.isEmpty(user) ? <Home /> : <Navigate to="/login" />} />
+              <Route path="/createtask" element={!_.isEmpty(user) ? <CreateTask /> : <Navigate to="/login" />} />
+              <Route path="/posts/:id" element={!_.isEmpty(user) ? <Task /> : <Navigate to="/login" />} />
               <Route path="/login" element={_.isEmpty(user) ? <Login /> : <Navigate to="/" />} />
               <Route path='/register' element={_.isEmpty(user) ? <Register /> : <Navigate to="/" />} />
               <Route path="/about" element={<About />} />

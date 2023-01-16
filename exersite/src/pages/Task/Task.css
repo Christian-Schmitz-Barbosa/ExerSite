@@ -1,0 +1,42 @@
+.task-container{
+    margin-top: 2em;
+    padding: 4em;
+    background-color: gray;
+    border-radius: 20px;
+}
+.task-container h2{
+    font-size: 48px;
+    margin-bottom: 30px;
+}
+
+.task-information p{
+    font-size: 18px;
+    margin-bottom: 4em;
+    margin-top: 2em;
+}
+.questions-container{
+    border-top: 5px solid white;
+    margin-bottom: 2em;
+}
+.questions-container h3{
+    font-size:24px
+}
+
+.questions-container div {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+input[type="checkbox"] {
+    width: 25px;
+    height: 25px;
+}
+
+input[type="submit"]{
+    margin-top: 2em;
+    text-align: center;
+    font-size: 22px;
+    padding: 1em 0 2em 0 ;
+}
+
