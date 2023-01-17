@@ -1,0 +1,29 @@
+
+.user-container{
+    background-color: gray;
+    padding: 3em;
+    margin-top: 2em;
+    border-radius: 20px;
+}
+.user-container h2 {
+    padding: 2em;
+    border-bottom: 2px solid white;
+}
+
+.user-historic{
+    border-top: 2px solid white;
+
+}
+
+.user-historic div{
+    width: 100%;
+    background-color: white!important;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2em;
+    padding: .5em;
+    border-radius: 10px;
+}
+.user-historic div p {
+    color: black;
+}

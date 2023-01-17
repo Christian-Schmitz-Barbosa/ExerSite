@@ -9,14 +9,16 @@ const Footer = () => {
             <div className="social-medias">
 
                 <a href="https://github.com/Christian-Schmitz-Barbosa" target="_blanck">
-                    <img src={github_icon } alt="GitHub" />
+                    <img src={github_icon} alt="GitHub" />
                 </a>
                 <a href="https://www.linkedin.com/in/christian-schmitz-barbosa-b455621a4/" target="_blanck">
-                    <img src={Linkedin_icon} alt="Likedin"/>
+                    <img src={Linkedin_icon} alt="Likedin" />
                 </a>
             </div>
-            <div className="site-name"> <h1>ExerSite &copy; 2023</h1> </div>
-            <div className="author"> Criated By: Christian Schmitz Barbosa</div>
+            <div className="another-inf">
+                <div className="site-name"> <h1>ExerSite &copy; 2023</h1> </div>
+                <div className="author"> Criated By: Christian Schmitz Barbosa</div>
+            </div>
         </div>
 
     )

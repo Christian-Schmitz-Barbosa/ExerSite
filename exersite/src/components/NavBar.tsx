@@ -10,10 +10,8 @@ import { useAuthentication } from "../hooks/useAuthentication"
 //context
 import { useAuthValue } from "../context/AuthContext"
 
-interface Props {
-    programs?: string[]
-}
-const NavBar = ({ }: Props) => {
+
+const NavBar = () => {
     const { logOut } = useAuthentication()
     
     const userContext = useAuthValue()
@@ -26,32 +24,23 @@ const NavBar = ({ }: Props) => {
                     <img src={Logo} alt="Logo" />
                     <h1>ExerSite</h1>
                 </Link>
-                <form>
+                {/*For now, the search system is not finished */}
+                {/* <form>
                     <img src={question_mark} alt="Interrogação" />
                     <input type="text" placeholder="Pergunte" />
-                </form>
+                </form> */}
             </div>
             <nav className="menu">
                 <ul className="nav-menu">
                     {userContext.uid && <>
                         <li className="corner-left" >
                             <NavLink to="/">Home</NavLink>
-                            <NavLink to ="/createtask">Create Task</NavLink>
-
                         </li>
-                        <li className="menu-dropdown"> <a href="#"> Materias
-                            <ul>
-
-                            </ul>
-                        </a>
-
-                        </li>
-                        <li className="menu-dropdown"> <a href="#">Conta
-                            <ul>
-                                <li><a href="#">Usuário</a></li>
-                                <li><a href="#">Configuração</a></li>
+                        <li className="menu-dropdown"> <a href="#">Configurações
+                            <li className="shadow-menu">
+                                <li><Link to={`/users/${userContext.uid}`}>Conta</Link></li>
                                 <li><Link to="/login" onClick={()=> {logOut()}}>Sair</Link></li>
-                            </ul>
+                            </li>
                         </a></li>
 
                     </>}

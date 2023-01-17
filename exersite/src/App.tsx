@@ -1,8 +1,6 @@
-import React from 'react';
 import './App.css';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import _ from 'underscore'
 
 
 //components
@@ -24,6 +22,7 @@ import Login from "./pages/Auth/Login";
 import Register from './pages/Auth/Register';
 import CreateTask from './pages/CreateTask/CreateTask';
 import Task from './pages/Task/Task';
+import User from './pages/User/User';
 
 
 function App() {
@@ -41,6 +40,7 @@ function App() {
     })
   }, [userAuth])
 
+console.log("akjnljknhsajd",user);
 
 
   return (
@@ -50,11 +50,12 @@ function App() {
           <NavBar />
           <div className="container">
             <Routes>
-              <Route path='/' element={!_.isEmpty(user) ? <Home /> : <Navigate to="/login" />} />
-              <Route path="/createtask" element={!_.isEmpty(user) ? <CreateTask /> : <Navigate to="/login" />} />
-              <Route path="/posts/:id" element={!_.isEmpty(user) ? <Task /> : <Navigate to="/login" />} />
-              <Route path="/login" element={_.isEmpty(user) ? <Login /> : <Navigate to="/" />} />
-              <Route path='/register' element={_.isEmpty(user) ? <Register /> : <Navigate to="/" />} />
+              <Route path='/' element={userAuth.currentUser ? <Home /> : <Navigate to="/login" />} />
+              <Route path="/createtask" element={userAuth.currentUser? <CreateTask /> : <Navigate to="/login" />} />
+              <Route path="/posts/:id" element={userAuth.currentUser ? <Task /> : <Navigate to="/login" />} />
+              <Route path="/users/:id" element={userAuth.currentUser? <User /> : <Navigate to="/login" />} />
+              <Route path="/login" element={!userAuth.currentUser ? <Login /> : <Navigate to="/" />} />
+              <Route path='/register' element={!userAuth.currentUser ? <Register /> : <Navigate to="/" />} />
               <Route path="/about" element={<About />} />
             </Routes>
           </div>

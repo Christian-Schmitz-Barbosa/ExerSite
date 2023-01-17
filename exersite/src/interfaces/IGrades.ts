@@ -6,4 +6,5 @@ export default interface IGrade {
 export interface IScore{
     value:number;
     taskLocation:string;
+    taskName:string;
 }

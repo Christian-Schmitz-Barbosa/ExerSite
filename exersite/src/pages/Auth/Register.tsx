@@ -22,15 +22,15 @@ const Register = () => {
       email,
       password,
       displayName: name,
-
+      confirmPassword
     }
-    
+
     createUser(user)
   }
 
   return (
     <div className='register auth'>
-      <form onSubmit={handleSubmit}className="form-container">
+      <form onSubmit={handleSubmit} className="form-container">
         <h1>Cadastre-se</h1>
         <div className="input_container">
           <label htmlFor='name'>Nome:</label>
@@ -59,7 +59,6 @@ const Register = () => {
             name="password"
             placeholder='Digite a sua senha'
             onChange={(e) => setPassword(e.target.value)}
-            value={password || ""}
           />
         </div>
         <div className="input_container">
@@ -69,11 +68,13 @@ const Register = () => {
             name="confirmPassword"
             placeholder='Confirme a sua senha'
             onChange={(e) => setConfirmPassword(e.target.value)}
-            value={confirmPassword || ""}
           />
         </div>
-        <input type="submit" className="btn" value="Enviar" />
+        {!loading && <input type="submit" className="btn" value="Enviar" />}
+        {loading && <input type="submit" className="btn" value="Aguarde" disabled />}
+        {authError&&<p className="error_msg">{authError}</p>}
       </form>
+
       <div className="link">
         <h2>Já é cadastrado?</h2>
         <NavLink to="/login">Entrar</NavLink>

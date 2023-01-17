@@ -11,17 +11,20 @@ import IGrade, { IScore } from "../../interfaces/IGrades";
 
 //Styles
 import "./Task.css"
+import { useNavigate } from 'react-router-dom';
 
 
 const Task = () => {
+
+  const navigate = useNavigate()
 
   // for the grade system
   const { insertDocument } = useInsertDocument("users_grade")
   const { userAuth } = useAuthentication()
   const [currentUser, setCurrentUser] = useState(userAuth.currentUser)
   const { document } = useFetchDocument("users_grade", null, currentUser?.uid)
-  const {updateDocument} = useUpdateDocument("users_grade")
-
+  const { updateDocument } = useUpdateDocument("users_grade")
+  
 
 
   //Get Task Data and convert json to object 
@@ -40,7 +43,7 @@ const Task = () => {
       isCorrect: false,
     }
   }
-// This array wil hold all the checked alternatives 
+  // This array wil hold all the checked alternatives 
   const [alternativesSelection, setAlternativesSelection] = useState<IAlternatives[][]>
     (Array.from({ length: post.questionsList.length },
       () => Array.from({ length: 5 }, () => { return fillArray() }
@@ -61,39 +64,51 @@ const Task = () => {
 
   //Will update or insert a document in the database
   const handleGrade = async (nota: number) => {
-    console.log(nota);
-
     const singleScoreTask: IScore = {
       value: nota,
-      taskLocation: post.id
+      taskLocation: post.id,
+      taskName: post.taskInformations.taskTitle
     }
     if (!document) {
+
       const grade: IGrade = {
         score: [singleScoreTask],
         userId: currentUser?.uid,
+
       }
-      insertDocument(grade)
+
+      await insertDocument(grade)
     } else {
       const gradeArr: IGrade = {
         userId: currentUser?.uid,
-        score: [...document.score,singleScoreTask]
+        score: [singleScoreTask, ...document.score]
       }
-      updateDocument(gradeArr, null, currentUser?.uid)
+      await updateDocument(gradeArr, null, currentUser?.uid)
     }
-  }
+    showScore(nota)
 
-// this function will check if the cells in alternativeSelection was selected the user and if it is correct.
-// this recursive function, will be called for each cell and when it pass all array, will calculte the score,
-// and call the handleGrade function with that score
-  const handleAnswer = (e: FormEvent<HTMLFormElement>, row: number, col: number, arr: boolean[] | null[]) => {
+  }
+  const showScore = (score: number) => {
+    if (score > 80)alert("Nota: " + score + " Tirou Uma Nota Muito Boa Parabéns")
+    else if (score > 60)alert("Nota: " + score + " Tirou Uma Nota Boa Parabéns")
+    else if (score > 30) alert("Nota: " + score + " Tirou uma Nota Ruim, Estude Mais")
+    else alert("Nota: " + score + " Tirou Uma Nota Muito Ruim, Desista")
+
+    navigate("/")
+
+  }
+  // this function will check if the cells in alternativeSelection was selected the user and if it is correct.
+  // this recursive function, will be called for each cell and when it pass all array, will calculte the score,
+  // and call the handleGrade function with that score
+  const handleAnswer = async (e: FormEvent<HTMLFormElement>, row: number, col: number, arr: boolean[] | null[]) => {
     e.preventDefault()
     const cell = alternativesSelection[row][col];
 
     if (cell === alternativesSelection[alternativesSelection.length - 1][4]) {
       const questionsWeight = 100 / alternativesSelection.length
       let count = 0
-      arr.map((e: any) => { if (e) count += questionsWeight })
-      handleGrade(count)
+      arr.map((e: any) => { if (e)  count += questionsWeight })
+      await handleGrade(count)
       return
     }
     //verify if the col is in the last cell of the that column, if was, so the function will be called again. 
@@ -137,7 +152,6 @@ const Task = () => {
                   <li key={indexAlternative} className="alternative-containers">
                     <input type="checkbox" id={`checkbox`} value={indexAlternative} onChange={(e) => {
                       changeValues(e, index, indexAlternative);
-
                     }} />
                     <label htmlFor={`Opção ${indexAlternative}`}>{alternative.alternative}</label>
                   </li>

@@ -23,7 +23,7 @@ const Login = (props: Props) => {
   }
 
   return (
-    <div className='register auth'>
+    <div className='auth'>
       <form onSubmit={handleSubmit} className="form-container">
         <h1>Login</h1>
         <div className="input_container">
@@ -47,7 +47,9 @@ const Login = (props: Props) => {
           />
         </div>
 
-        <input type="submit" className="btn" value="Enviar" />
+        {!loading&&<input type="submit" className="btn" value="Enviar" />}
+        {loading&&<input type="submit" className="btn" value="Aguarde" disabled />}
+        {error&&<p className="error_msg">{error}</p>}
       </form>
       <div className="link">
         <h2>Não é cadastrado?</h2>

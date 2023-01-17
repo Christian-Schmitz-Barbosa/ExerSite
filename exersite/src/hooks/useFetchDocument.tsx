@@ -27,7 +27,7 @@ export const useFetchDocument = (docCollection: any, id: any, userId?: any) => {
                         collectionRef,
                         where("userId", "==", userId)
                     ))
-                    await q.forEach((doc: any) => {
+                    await q.forEach((doc: any) => {                        
                         const tempIGrande = doc.data()
                         setDocument(tempIGrande)
                     })
@@ -47,7 +47,7 @@ export const useFetchDocument = (docCollection: any, id: any, userId?: any) => {
             setLoading(false)
         }
         loadDocument()
-    }, [docCollection, id, cancelled])
+    }, [docCollection, id, cancelled, userId])
 
     useEffect(() => {
         return () => setCancelled(true);

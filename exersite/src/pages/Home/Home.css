@@ -1,3 +1,12 @@
+@media screen and  (max-width: 555px){
+    .posts-container {
+        width: 100%!important;
+    }
+    .posts {
+        width: 100%!important;
+    }
+}
+
 .posts-container {
     margin-top: 2em;
     padding: 3em;
@@ -16,6 +25,8 @@
 
 .posts {
     display: grid;
+    align-items: center!important;
+
     justify-content: center;
 }
 

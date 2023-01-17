@@ -5,8 +5,7 @@ export const useTestsSubmit = (taskInformations: ITaskInformations | undefined, 
 
     
     const taskInformationsTest = (!(_.isEmpty(taskInformations!.course))&& taskInformations!.description !== ''&& taskInformations!.taskTitle !== '')
-    console.log(taskInformationsTest)
-;
+
     
     if (taskInformationsTest && !(_.isEmpty(questionsList))) {
         return true

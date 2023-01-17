@@ -1,5 +1,23 @@
+@media screen and  (max-width: 555px){
+    .posts-itens{
+        width: 70%!important;
+        height: auto!important;
+    
+        padding-left: 2em !important;
+        right: 30%!important;
+    }
+    .posts-itens button {
+        width: 35px!important;
+        height: 35px!important;
+        padding: 0!important;
+    }
+    .posts-itens h2{
+        text-align: left!important;
+    }
+}
 .posts-itens {
     display: flex;
+    margin-top: 2em;
     width: 400px;
     justify-content: space-between;
     align-items: center;
