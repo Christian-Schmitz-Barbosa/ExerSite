@@ -5,6 +5,9 @@
     .posts {
         width: 100%!important;
     }
+    .posts-container h1{
+        padding-bottom: 2em;
+    }
 }
 
 .posts-container {
@@ -19,6 +22,7 @@
     height: 40px;
     width: 100%;
     text-align: center;
+
     border-bottom: 2px solid white;
     margin-bottom: 2em;
 }

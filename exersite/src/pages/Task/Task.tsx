@@ -141,6 +141,8 @@ const Task = () => {
         <div className="task-information">
           <h2>{post.taskInformations.taskTitle}</h2>
           <p>{post.taskInformations.description}</p>
+          <p className='course'>Matéria: {post.taskInformations.course}</p>
+
         </div>
         {post.questionsList.map((itens: any, index: number) => {
           return (
@@ -161,7 +163,6 @@ const Task = () => {
           )
         })}
         <input type="submit" value="Terminar" />
-        <p className='course'>{post.taskInformations.course}</p>
       </form>
     </div>
 

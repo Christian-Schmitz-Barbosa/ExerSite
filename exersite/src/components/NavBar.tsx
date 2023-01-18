@@ -24,6 +24,7 @@ const NavBar = () => {
                     <img src={Logo} alt="Logo" />
                     <h1>ExerSite</h1>
                 </Link>
+
                 {/*For now, the search system is not finished */}
                 {/* <form>
                     <img src={question_mark} alt="Interrogação" />
@@ -35,6 +36,10 @@ const NavBar = () => {
                     {userContext.uid && <>
                         <li className="corner-left" >
                             <NavLink to="/">Home</NavLink>
+                        </li>
+                        <li>
+                            {/* <NavLink to="/createtask">Criar</NavLink> */}
+                            
                         </li>
                         <li className="menu-dropdown"> <a href="#">Configurações
                             <li className="shadow-menu">

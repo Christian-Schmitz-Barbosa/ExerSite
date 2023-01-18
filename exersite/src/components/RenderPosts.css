@@ -12,7 +12,7 @@
         padding: 0!important;
     }
     .posts-itens h2{
-        text-align: left!important;
+        font-size:15px!important;
     }
 }
 .posts-itens {
@@ -27,6 +27,7 @@
 }
 .posts-itens h2{
     color: black;
+    text-align: left;
 }
 
 .posts-itens button {

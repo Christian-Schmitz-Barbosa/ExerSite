@@ -40,7 +40,6 @@ function App() {
     })
   }, [userAuth])
 
-console.log("akjnljknhsajd",user);
 
 
   return (

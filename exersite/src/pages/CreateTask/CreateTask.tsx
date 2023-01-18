@@ -20,6 +20,7 @@ const CreateTask = () => {
   //Questions
   const [questionTitle, setQuestionTitle] = useState('')
   const [content, setContent] = useState('')
+  const [allow, setAllow] = useState<boolean|null>(null)
   const [alternatives, setAlternatives] = useState("")
   const [alternativesArr, setAlternativesArr] = useState<IData[]>([])
   const [answer, setAnswer] = useState(false)
@@ -30,14 +31,25 @@ const CreateTask = () => {
   const navigate = useNavigate()
 
 
+  const allowSubmit = (e:any) => {
+    if(e){
 
+      if (e.target.checked) {
+        setAllow(true)
+        console.log("if  ", allow);
+      } else {
+        setAllow(false)
+        console.log("else   ", allow);
+      }
+    }
+  }
 
   //create post function
   const { insertDocument, response } = useInsertDocument('posts')
 
   const handleCreateTask = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (taskInformations && questionsList) {
+    if (allow && taskInformations && questionsList) {
       const task: ITask = { taskInformations, questionsList }
       await insertDocument(task)
       navigate("/")
@@ -212,6 +224,7 @@ const CreateTask = () => {
         <button className="submit-button" type="button" onClick={handleInsertQuestion}>Adicione a Questão na Task</button>
       </div>
       <input type="submit" />
+      <input type="checkbox" onChange={(e) => allowSubmit(e)} /> <label htmlFor=""> Quer Fazer O Subit?</label>
     </form>
   )
 }

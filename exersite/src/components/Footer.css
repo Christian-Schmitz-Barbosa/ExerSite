@@ -1,52 +1,87 @@
-@media screen and (max-width:531px){
-
-    #footer,.another-inf,
-    .social-medias{
-        display: grid!important;
-        justify-content: center;
-        align-items: center;
+@media screen and (max-width:758px) {
+    .footer{
+        height: 30vh!important;
+        width: 100%!important;
+        float: left!important;
     }
-    .social-medias{
-        display: flex!important;;
+    .footer,
+    .another-inf,
+    .social-medias {
+        display: grid !important;
+    }
+
+    .social-medias {
+        position: relative!important;
+        left: 50%!important ;
+        display: flex !important;
         margin-top: 2em;
-        justify-content: space-around!important;
+        justify-content: space-around !important;
         align-items: center;
-    
-        width: 120%!important;
-        height: 50px!important;
+
+        width: 120% !important;
+        height: 50px !important;
 
     }
     .social-medias img {
-        margin: 0!important;
+        margin: 0 !important;
     }
-    .site-name{
+    
+    .site-name {
+        position: relative!important;
+        left: 55%;
         margin-top: 2em;
         width: 100%;
     }
-    .site-name h1{
+    
+    .site-name h1 {
         margin-left: 1em;
         text-align: center;
     }
-    .author{
+    
+    .author {
+        position: relative!important;
+        left: 60%;
         width: 100%;
         text-align: center;
     }
 }
+
+
 @media screen and (max-width:531px) {
-    .site-name h1{
+    .site-name h1 {
         font-size: large;
-        margin-left:0 ;
+        margin-left: 0;
+    }
+    .social-medias{
+        left: 5%!important ;
+        width: 100%!important;
+        
+    }
+    .site-name{
+        left: 15%!important ;
+    }
+    .author{
+        left: 15%!important ;
     }
 }
-#footer{
+@media screen and (max-width:375px){
+    .site-name{
+        left: 5%!important ;
+    }
+    .author{
+        left: 10%!important ;
+    }
+}
+.footer {
     height: 100px;
     display: flex;
-    
+
     justify-content: space-between;
     align-items: center;
     border-top: 1px solid white;
 }
-#footer img {
+
+.footer img {
     background-color: #fff;
     border-radius: 6px;
     width: 60px;
@@ -54,6 +89,7 @@
     padding: 5px;
     margin-left: 2em;
 }
-.author{
+
+.author {
     margin-right: 2em;
 }

@@ -1,8 +1,13 @@
+@media screen and (min-width:673px) {
+    .task-container{
+        width: 400px!important;
+    }
+}
 @media screen and (max-width: 488px) {
     .task-container {
         padding: 1em!important;
         width:100%!important;
-
+        text-align: left!important;
     }
 }
 @media screen and (max-width:403px) {
@@ -24,12 +29,15 @@
 
 .task-information p{
     font-size: 18px;
-    margin-bottom: 4em;
     margin-top: 2em;
 }
 .questions-container{
     border-top: 5px solid white;
     margin-bottom: 2em;
+    padding: 0!important;
+}
+.course{
+    margin-bottom: 3em;
 }
 .questions-container h3{
     font-size:24px

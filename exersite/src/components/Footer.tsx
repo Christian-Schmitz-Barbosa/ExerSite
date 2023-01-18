@@ -1,11 +1,10 @@
-import React from 'react'
 import "./Footer.css"
 import github_icon from "../imgs/github_icon.png"
 import Linkedin_icon from "../imgs/Linkedin_icon.png"
 
 const Footer = () => {
     return (
-        <div id='footer'>
+        <div className='footer'>
             <div className="social-medias">
 
                 <a href="https://github.com/Christian-Schmitz-Barbosa" target="_blanck">
@@ -15,10 +14,8 @@ const Footer = () => {
                     <img src={Linkedin_icon} alt="Likedin" />
                 </a>
             </div>
-            <div className="another-inf">
                 <div className="site-name"> <h1>ExerSite &copy; 2023</h1> </div>
                 <div className="author"> Criated By: Christian Schmitz Barbosa</div>
-            </div>
         </div>
 
     )
