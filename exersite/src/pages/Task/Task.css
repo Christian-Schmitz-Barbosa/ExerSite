@@ -1,46 +1,62 @@
 @media screen and (min-width:673px) {
-    .task-container{
-        width: 400px!important;
+    .task-container {
+        width: 400px !important;
     }
 }
+
 @media screen and (max-width: 488px) {
     .task-container {
-        padding: 1em!important;
-        width:100%!important;
-        text-align: left!important;
+        padding: 1em !important;
+        width: 100% !important;
+        text-align: left !important;
+    }
+
+    .task-container h2 {
+        text-align: center !important;
+    }
+
+    #score {
+        width: 200px !important;
     }
 }
-@media screen and (max-width:403px) {
-    .task-container h2{
-        text-align: center!important;;
+
+@media screen and (max-width:320px) {
+    #score {
+        width: 150px !important;
     }
 }
-.task-container{
+
+.task-container {
+    position: relative;
     margin-top: 2em;
     background-color: white;
     padding: 4em;
     background-color: gray;
     border-radius: 20px;
 }
-.task-container h2{
+
+.task-container h2 {
     font-size: 48px;
     margin-bottom: 30px;
 }
 
-.task-information p{
+.task-information p {
     font-size: 18px;
     margin-top: 2em;
 }
-.questions-container{
+
+.questions-container {
     border-top: 5px solid white;
     margin-bottom: 2em;
-    padding: 0!important;
+    padding: 0 !important;
 }
-.course{
+
+.course {
     margin-bottom: 3em;
 }
-.questions-container h3{
-    font-size:24px
+
+.questions-container h3 {
+    font-size: 24px
 }
 
 .questions-container li {
@@ -54,10 +70,63 @@ input[type="checkbox"] {
     height: 25px;
 }
 
-input[type="submit"]{
+input[type="submit"] {
     margin-top: 2em;
     text-align: center;
     font-size: 22px;
-    padding: 1em 0 2em 0 ;
+    padding: 1em 0 2em 0;
 }
 
+.hide {
+    visibility: hidden;
+}
+
+#score-container {
+    position: absolute;
+    left: 92%;
+    z-index: 1;
+    width: 10%;
+    height: 100%;
+}
+
+#score {
+    position: absolute;
+    background-color: gray;
+    width: 20em;
+    z-index: 3;
+    top: 15vh;
+    right: 10vh;
+    padding: 1.5em;
+    border-radius: 5px;
+}
+
+#score h3 {
+    text-align: left;
+}
+
+#score button {
+    color: black;
+    background-color: rgb(177, 176, 176);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 40px;
+    transition: 0.5s;
+}
+
+#score button:hover {
+    background-color: rgb(3, 3, 3);
+    border: 1px solid white;
+    color: white;
+}
+
+#shadow {
+    height: 100% !important;
+    position: absolute !important;
+    right: 17%;
+    bottom: 2%;
+    width: 100vh !important;
+    background-color: black !important;
+    opacity: 0.3;
+    z-index: 2;
+}

@@ -24,7 +24,9 @@ const Task = () => {
   const [currentUser, setCurrentUser] = useState(userAuth.currentUser)
   const { document } = useFetchDocument("users_grade", null, currentUser?.uid)
   const { updateDocument } = useUpdateDocument("users_grade")
-  
+  const [score, setScore] = useState("");
+
+
 
 
   //Get Task Data and convert json to object 
@@ -33,8 +35,10 @@ const Task = () => {
 
 
   useEffect(() => {
+
     setCurrentUser(userAuth.currentUser)
   }, [userAuth])
+
 
   //Will store all marked alternatives 
   const fillArray = () => {
@@ -89,25 +93,27 @@ const Task = () => {
 
   }
   const showScore = (score: number) => {
-    if (score > 80)alert("Nota: " + score + " Tirou Uma Nota Muito Boa Parabéns")
-    else if (score > 60)alert("Nota: " + score + " Tirou Uma Nota Boa Parabéns")
-    else if (score > 30) alert("Nota: " + score + " Tirou uma Nota Ruim, Estude Mais")
-    else alert("Nota: " + score + " Tirou Uma Nota Muito Ruim, Desista")
+    if (score > 80) setScore("Nota: " + score + " Tirou Uma Nota Muito Boa Parabéns")
+    else if (score > 60) setScore("Nota: " + score + " Tirou Uma Nota Boa Parabéns")
+    else if (score > 30) setScore("Nota: " + score + " Tirou uma Nota Ruim, Estude Mais")
+    else setScore("Nota: " + score + " Tirou Uma Nota Muito Ruim, Estude Ainda Mais")
 
-    navigate("/")
-
+    const modal = window.document.querySelector(".hide");
+    modal!.classList.remove('hide');
+    window.scrollTo(10, 0)
   }
   // this function will check if the cells in alternativeSelection was selected the user and if it is correct.
   // this recursive function, will be called for each cell and when it pass all array, will calculte the score,
   // and call the handleGrade function with that score
   const handleAnswer = async (e: FormEvent<HTMLFormElement>, row: number, col: number, arr: boolean[] | null[]) => {
     e.preventDefault()
+
     const cell = alternativesSelection[row][col];
 
     if (cell === alternativesSelection[alternativesSelection.length - 1][4]) {
       const questionsWeight = 100 / alternativesSelection.length
       let count = 0
-      arr.map((e: any) => { if (e)  count += questionsWeight })
+      arr.map((e: any) => { if (e) count += questionsWeight })
       await handleGrade(count)
       return
     }
@@ -135,6 +141,13 @@ const Task = () => {
 
   return (
     <div className='task-container'>
+      <div id='score-container' className="hide">
+        <div id='score' >
+          <h3>{score}</h3>
+          <button type='button' onClick={() => navigate("/")}>Voltar Para o Menu</button>
+        </div>
+        <div id='shadow'></div>
+      </div>
       <form onSubmit={(e) => handleAnswer(e, 0, 0, Array.from(
         { length: alternativesSelection.length }, () => null
       ))}>
